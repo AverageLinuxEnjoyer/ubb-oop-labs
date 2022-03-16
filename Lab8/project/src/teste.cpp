@@ -5,7 +5,7 @@
 #include "../include/teste.hpp"
 #include "../include/entitati/entitate.hpp"
 #include "../include/repo.hpp"
-#include "../include/service.hpp"
+#include "../include/service/service.hpp"
 #include "../include/undo_redo/adaugare.hpp"
 #include "../include/undo_redo/stergere.hpp"
 #include "../include/undo_redo/operatie.hpp"

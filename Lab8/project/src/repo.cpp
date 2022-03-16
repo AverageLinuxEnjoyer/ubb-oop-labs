@@ -42,5 +42,7 @@ int Repo<T>::getSize() const {
 
 #include "../include/entitati/entitate.hpp"
 #include "../include/entitati/cheltuiala.hpp"
+#include "../include/entitati/tranzactie.hpp"
 template class Repo<Entitate>;
 template class Repo<Cheltuiala>;
+template class Repo<Tranzactie>;

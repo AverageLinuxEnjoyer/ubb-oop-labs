@@ -1,7 +1,7 @@
 #ifndef OPERATIE_HPP
 #define OPERATIE_HPP
 
-#include "../../include/service.hpp"
+#include "../../include/service/service.hpp"
 #include <memory>
 
 template<class T>

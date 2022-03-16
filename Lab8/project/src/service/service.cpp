@@ -1,4 +1,5 @@
-#include "../include/service.hpp"
+#include "../../include/service/service.hpp"
+#include <algorithm>
 
 template<class T>
 Service<T>::Service(Repo<T> *repo_)
@@ -42,6 +43,15 @@ std::vector<T> Service<T>::getAllCuProprietate(std::function<bool(const T&)> fun
 }
 
 template<class T>
+inline std::vector<T> Service<T>::getSortedBy(std::function<bool(const T&, const T&)> functie) const {
+    std::vector<T> sorted(this->repo->getAll());
+
+    std::sort(sorted.begin(), sorted.end(), functie);
+
+    return sorted;
+}
+
+template<class T>
 void Service<T>::add(const T& e) {
     if (this->repo == nullptr) {
         throw std::exception();
@@ -77,7 +87,9 @@ int Service<T>::getSize() const {
     return this->repo->getSize();
 }
 
-#include "../include/entitati/entitate.hpp"
-#include "../include/entitati/cheltuiala.hpp"
+#include "../../include/entitati/entitate.hpp"
+#include "../../include/entitati/cheltuiala.hpp"
+#include "../../include/entitati/tranzactie.hpp"
 template class Service<Entitate>;
 template class Service<Cheltuiala>;
+template class Service<Tranzactie>;

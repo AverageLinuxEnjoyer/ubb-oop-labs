@@ -1,7 +1,7 @@
 #ifndef SERVICE_HPP
 #define SERVICE_HPP
 
-#include "../include/repo.hpp"
+#include "../../include/repo.hpp"
 #include <functional>
 
 template<class T>
@@ -19,6 +19,7 @@ public:
     const std::vector<T>& getAll() const;
     const T& get(int index) const;
     std::vector<T> getAllCuProprietate(std::function<bool(const T&)> functie) const; 
+    std::vector<T> getSortedBy(std::function<bool(const T&, const T&)> functie) const;
     
     void add(const T& e);
     void update(int index, const T& e);
