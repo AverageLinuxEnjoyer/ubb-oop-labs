@@ -76,20 +76,42 @@ std::vector<T> ContainerEntitati<T>::entitatiInPrimulCadran() const
     return entitatiInCadran;
 }
 
+
+// ar putea fi folosit in loc de lambda
+template<class T>
+bool areAllEqual(int start, int end, const std::vector<T>& vec)
+{
+    for (int i = start + 1; i <= end; i++)
+           if (!(vec[i] == vec[start]))
+               return false;
+
+    return true;
+}
+
 template<class T>
 std::pair<int,int> ContainerEntitati<T>::ceaMaiLungaSubsecventa() const
 {
-    int start = 0, end = 0;
+    auto areAllEqual = [&](int start, int end) {
+        for(int i = start + 1; i <= end; i++)
+            if (!(this->entitati[i] == this->entitati[start]))
+                return false;
 
-    for (int i = 0; i < this->entitati.size() - 1; i++) {
-        for (int j = i + 1; j < this->entitati.size(); j++) 
+        return true;
+    };
+
+    int start = 0, end = 0, longest = -1;
+    for(int i = 0; i < this->entitati.size() - 1; i++)
+    {
+        for(int j = i+1; j < this->entitati.size(); j++)
         {
-            if (!(this->entitati[i] == this->entitati[j])) {
-                break;
-            }
-            else if (j == this->entitati.size() - 1) {
-                end = j;
-                start = i;
+            if (areAllEqual(i, j))
+            {
+                if (j - i > longest)
+                {
+                    longest = j - i;
+                    start = i;
+                    end = j;
+                }
             }
         }
     }
