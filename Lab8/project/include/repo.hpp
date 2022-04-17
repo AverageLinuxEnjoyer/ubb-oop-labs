@@ -2,8 +2,8 @@
 #define REPO_HPP
 
 #include <vector>
+#include "../include/cheltuiala.hpp"
 
-template<class T>
 class Repo {
 public:
     Repo();
@@ -13,15 +13,15 @@ public:
     Repo& operator=(const Repo& other) = delete;
     bool operator==(const Repo& other) const;
 
-    const std::vector<T>& getAll() const;
-    const T& get(int index) const;
+    const std::vector<Cheltuiala>& getAll() const;
+    Cheltuiala get(int index) const;
 
-    virtual void add(const T& e);
-    virtual void update(int index, const T& e);
-    virtual void remove(int index);
+    virtual void add(const Cheltuiala& e, int index = -1);
+    virtual void update(int index, const Cheltuiala& e);
+    virtual void remove(std::vector<int> indexes);
     int getSize() const;
 private:
-    std::vector<T> entitati;
+    std::vector<Cheltuiala> entitati;
 
 };
 

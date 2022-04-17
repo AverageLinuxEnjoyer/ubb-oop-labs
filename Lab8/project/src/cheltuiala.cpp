@@ -1,4 +1,4 @@
-#include "../../include/entitati/cheltuiala.hpp"
+#include "../include/cheltuiala.hpp"
 
 #include <chrono>
 #include <ctime>
@@ -69,6 +69,21 @@ void Cheltuiala::setSuma(int suma_) {
 
 void Cheltuiala::setTip(Tip tip_) {
     this->tip = tip_;
+}
+
+bool Cheltuiala::operator==(const Cheltuiala& c) const {
+    return this->suma == c.suma && this->tip == c.tip && this->ziua == c.ziua;
+}
+
+Cheltuiala& Cheltuiala::operator=(const Cheltuiala& c) {
+    if (this != &c)
+    {
+        this->suma = c.suma;
+        this->tip = c.tip;
+        this->ziua = c.ziua;
+    }
+
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Cheltuiala& c)

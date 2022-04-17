@@ -1,48 +1,38 @@
 #include "../include/repo.hpp"
 
-template<class T>
-Repo<T>::Repo()
+Repo::Repo()
     : entitati()
 {}
 
-template<class T>
-bool Repo<T>::operator==(const Repo<T>& other) const {
+bool Repo::operator==(const Repo& other) const {
     return this->entitati == other.entitati;
 }
 
-template<class T>
-void Repo<T>::add(const T& e) {
-    this->entitati.emplace_back(e);
+void Repo::add(const Cheltuiala& e, int index) {
+    if (index != -1)
+        this->entitati.insert(this->entitati.begin() + index, e);
+    else
+        this->entitati.push_back(e);
 }
 
-template<class T>
-void Repo<T>::update(int index, const T& e) {
+void Repo::update(int index, const Cheltuiala& e) {
     this->entitati[index] = e;
 }
 
-template<class T>
-void Repo<T>::remove(int index) {
-    this->entitati.erase(this->entitati.begin() + index);
+void Repo::remove(std::vector<int> indexes) {
+    for (int i = indexes.size() - 1; i >= 0; i--) {
+        this->entitati.erase(this->entitati.begin() + indexes[i]);
+    }
 }
 
-template<class T>
-const std::vector<T>& Repo<T>::getAll() const {
+const std::vector<Cheltuiala>& Repo::getAll() const {
     return this->entitati;
 }
 
-template<class T>
-const T& Repo<T>::get(int index) const {
+Cheltuiala Repo::get(int index) const {
     return this->entitati[index];
 }
 
-template<class T>
-int Repo<T>::getSize() const {
+int Repo::getSize() const {
     return this->entitati.size();
 }
-
-#include "../include/entitati/entitate.hpp"
-#include "../include/entitati/cheltuiala.hpp"
-#include "../include/entitati/tranzactie.hpp"
-template class Repo<Entitate>;
-template class Repo<Cheltuiala>;
-template class Repo<Tranzactie>;
